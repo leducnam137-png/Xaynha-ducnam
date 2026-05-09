@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trợ lý Xây dựng Pi</title>
+    <style>
+        :root { --pi-purple: #673ab7; --pi-gold: #ffa000; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.6; padding: 10px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: var(--pi-purple); text-align: center; border-bottom: 2px solid var(--pi-gold); padding-bottom: 10px; }
+        .question-group { margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 10px; background: #fafafa; }
+        .question-group p { font-weight: bold; margin-top: 0; color: #555; }
+        label { display: block; margin: 8px 0; cursor: pointer; transition: 0.2s; }
+        label:hover { color: var(--pi-purple); }
+        input[type="radio"] { margin-right: 10px; accent-color: var(--pi-purple); }
+        .btn-analyze { display: block; width: 100%; background: var(--pi-purple); color: white; border: none; padding: 15px; font-size: 1.1rem; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 20px; box-shadow: 0 4px 6px rgba(103, 58, 183, 0.3); }
+        .btn-analyze:hover { background: #5e35b1; }
+        #result { margin-top: 25px; padding: 20px; border-radius: 10px; display: none; }
+        .warning { background: #ffebee; border-left: 5px solid #d32f2f; color: #b71c1c; }
+        .success { background: #e8f5e9; border-left: 5px solid #2e7d32; color: #1b5e20; }
+        .info-box { font-size: 0.9rem; margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🏗️ TRỢ LÝ XÂY DỰNG PI</h2>
+    
+    <div id="quiz">
+        <div class="question-group">
+            <p>1. Tình trạng pháp lý lô đất của anh?</p>
+            <label><input type="radio" name="phaply" value="A"> Sổ hồng chính quy, đất ở 100%</label>
+            <label><input type="radio" name="phaply" value="B"> Sổ cũ/Chưa thổ cư hết</label>
+            <label><input type="radio" name="phaply" value="C"> Giấy tay/Đang tranh chấp</label>
+        </div>
+
+        <div class="question-group">
+            <p>2. Vị trí tiếp giáp (Tứ cận)?</p>
+            <label><input type="radio" name="tucan" value="A"> Đất trống thoáng đãng</label>
+            <label><input type="radio" name="tucan" value="B"> Giáp nhà cấp 4/nhà tạm</label>
+            <label><input type="radio" name="tucan" value="C"> Kẹp giữa 2 nhà cao tầng</label>
+        </div>
+
+        <div class="question-group">
+            <p>3. Anh đã có gói bảo hiểm rủi ro chưa?</p>
+            <label><input type="radio" name="baohiem" value="yes"> Đã mua/Sẽ mua theo nhà thầu</label>
+            <label><input type="radio" name="baohiem" value="no"> Chưa có/Không định mua</label>
+        </div>
+
+        <button class="btn-analyze" onclick="analyze()">PHÂN TÍCH KỊCH BẢN</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function analyze() {
+    const pl = document.querySelector('input[name="phaply"]:checked')?.value;
+    const tc = document.querySelector('input[name="tucan"]:checked')?.value;
+    const bh = document.querySelector('input[name="baohiem"]:checked')?.value;
+
+    if (!pl || !tc || !bh) {
+        alert("Anh vui lòng chọn đủ 3 mục để em phân tích nhé!");
+        return;
+    }
+
+    const resDiv = document.getElementById('result');
+    resDiv.style.display = "block";
+    let output = "";
+    let isSafe = true;
+
+    if (pl === 'C' || tc === 'C' || bh === 'no') isSafe = false;
+
+    if (!isSafe) {
+        resDiv.className = "warning";
+        output = "<h3>⚠️ CẢNH BÁO RỦI RO CAO</h3>";
+        if(pl === 'C') output += "• <b>Pháp lý:</b> Cực kỳ nguy hiểm. Anh cần giải quyết tranh chấp trước khi đổ vật tư.<br>";
+        if(tc === 'C') output += "• <b>Thi công:</b> Nhà kẹp sườn rất dễ gây lún nứt hàng xóm. Cần biện pháp văng chống.<br>";
+        if(bh === 'no') output += "• <b>Bảo hiểm:</b> Anh nên mua bảo hiểm ngay để tránh mất tiền tỷ nếu xảy ra sự cố.";
+    } else {
+        resDiv.className = "success";
+        output = "<h3>✅ KỊCH BẢN AN TOÀN</h3>";
+        output += "Mọi thứ có vẻ rất sẵn sàng. Anh có thể tiến hành xin GPXD và chọn ngày khởi công tốt.";
+    }
+
+    resDiv.innerHTML = output + "<div class='info-box'>Cảm ơn anh đã sử dụng trợ lý Pi Construction!</div>";
+}
+</script>
+
+</body>
+</html>
