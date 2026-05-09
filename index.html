@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trợ lý Xây dựng Pi - Full Update</title>
+    <title>Trợ lý Xây dựng Pi v4.0</title>
     <style>
         :root { --pi-purple: #673ab7; --pi-gold: #ffa000; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.6; padding: 10px; }
         .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         h2 { color: var(--pi-purple); text-align: center; border-bottom: 2px solid var(--pi-gold); padding-bottom: 10px; }
-        .section-title { color: var(--pi-purple); font-weight: bold; margin-top: 20px; border-left: 4px solid var(--pi-gold); padding-left: 10px; }
+        .section-title { color: var(--pi-purple); font-weight: bold; margin-top: 20px; border-left: 4px solid var(--pi-gold); padding-left: 10px; background: #eee; padding: 5px 10px; }
         .question-group { margin-bottom: 15px; padding: 15px; border: 1px solid #eee; border-radius: 10px; background: #fafafa; }
         .question-group p { font-weight: bold; margin-top: 0; color: #555; font-size: 0.95rem; }
         label { display: block; margin: 8px 0; cursor: pointer; font-size: 0.9rem; }
@@ -30,87 +30,109 @@
         <div class="section-title">I. PHÁP LÝ & QUY HOẠCH</div>
         <div class="question-group">
             <p>1. Tình trạng chủ quyền lô đất?</p>
-            <label><input type="radio" name="phaply" value="A"> Sổ hồng chính quy, đất ở 100%</label>
-            <label><input type="radio" name="phaply" value="B"> Sổ cũ/Chưa lên thổ cư hết</label>
-            <label><input type="radio" name="phaply" value="C"> Giấy tay/Đang tranh chấp</label>
+            <label><input type="radio" name="phaply" value="A"> Sổ hồng chính quy</label>
+            <label><input type="radio" name="phaply" value="B"> Sổ cũ/Chưa thổ cư</label>
+            <label><input type="radio" name="phaply" value="C"> Giấy tay/Tranh chấp</label>
         </div>
 
         <div class="question-group">
             <p>2. Giấy phép xây dựng (GPXD)?</p>
-            <label><input type="radio" name="gpxd" value="A"> Đã có giấy phép chính thức</label>
-            <label><input type="radio" name="gpxd" value="B"> Đang nộp hồ sơ chờ duyệt</label>
-            <label><input type="radio" name="gpxd" value="C"> Chưa xin phép xây dựng</label>
+            <label><input type="radio" name="gpxd" value="A"> Đã có chính thức</label>
+            <label><input type="radio" name="gpxd" value="B"> Đang chờ duyệt</label>
+            <label><input type="radio" name="gpxd" value="C"> Chưa có phép</label>
         </div>
 
         <div class="question-group">
-            <p>3. Kiểm tra mật độ & lộ giới?</p>
-            <label><input type="radio" name="quyhoach" value="A"> Đã rõ khoảng lùi/mật độ</label>
-            <label><input type="radio" name="quyhoach" value="B"> Chưa rõ lô đất bị lùi bao nhiêu</label>
+            <p>3. Diện tích và Khoảng hở (Mật độ)?</p>
+            <label><input type="radio" name="dientich" value="under50"> Dưới 50m2 (Xây 100%, không cần chừa mật độ)</label>
+            <label><input type="radio" name="dientich" value="50to100"> Từ 50m2 - 100m2 (Phải chừa khoảng lùi sau/thông tầng)</label>
+            <label><input type="radio" name="dientich" value="over100"> Trên 100m2 (Bắt buộc chừa mật độ xây dựng theo luật)</label>
         </div>
 
-        <div class="section-title">II. KỸ THUẬT & RỦI RO</div>
+        <div class="section-title">II. KỸ THUẬT & HIỆN TRƯỜNG</div>
         <div class="question-group">
-            <p>4. Vị trí tiếp giáp (Tứ cận)?</p>
-            <label><input type="radio" name="tucan" value="A"> Đất trống thoáng đãng</label>
-            <label><input type="radio" name="tucan" value="B"> Giáp nhà dân xung quanh</label>
+            <p>4. Tiếp giáp nhà xung quanh (Tứ cận)?</p>
+            <label><input type="radio" name="tucan" value="A"> Đất trống</label>
+            <label><input type="radio" name="tucan" value="B"> Giáp nhà dân</label>
             <label><input type="radio" name="tucan" value="C"> Kẹp giữa 2 nhà cao tầng</label>
         </div>
 
         <div class="question-group">
-            <p>5. Bảo hiểm công trình?</p>
-            <label><input type="radio" name="baohiem" value="yes"> Đã có/Sẽ mua bảo hiểm</label>
-            <label><input type="radio" name="baohiem" value="no"> Không định mua bảo hiểm</label>
+            <p>5. Hạ tầng Điện & Nước thi công?</p>
+            <label><input type="radio" name="diennuoc" value="A"> Đã sẵn sàng</label>
+            <label><input type="radio" name="diennuoc" value="B"> Phải đi nhờ/Câu tạm</label>
+        </div>
+
+        <div class="section-title">III. RỦI RO & TÀI CHÍNH</div>
+        <div class="question-group">
+            <p>6. Bảo hiểm rủi ro công trình?</p>
+            <label><input type="radio" name="baohiem" value="yes"> Sẽ mua bảo hiểm</label>
+            <label><input type="radio" name="baohiem" value="no"> Không mua</label>
+        </div>
+
+        <div class="question-group">
+            <p>7. Ngân sách dự phòng rủi ro (10%)?</p>
+            <label><input type="radio" name="ngansach" value="yes"> Đã chuẩn bị</label>
+            <label><input type="radio" name="ngansach" value="no"> Chưa có</label>
         </div>
 
         <button class="btn-analyze" onclick="analyze()">PHÂN TÍCH KỊCH BẢN</button>
     </div>
 
     <div id="result"></div>
-    <div class="info-box">Dự án phát triển bởi Affiliate Studio Pi</div>
+    <div class="info-box">Phát triển bởi Long - Affiliate Studio Pi</div>
 </div>
 
 <script>
 function analyze() {
-    // Lấy dữ liệu
-    const pl = document.querySelector('input[name="phaply"]:checked')?.value;
-    const gp = document.querySelector('input[name="gpxd"]:checked')?.value;
-    const qh = document.querySelector('input[name="quyhoach"]:checked')?.value;
-    const tc = document.querySelector('input[name="tucan"]:checked')?.value;
-    const bh = document.querySelector('input[name="baohiem"]:checked')?.value;
+    const data = {
+        pl: document.querySelector('input[name="phaply"]:checked')?.value,
+        gp: document.querySelector('input[name="gpxd"]:checked')?.value,
+        dt: document.querySelector('input[name="dientich"]:checked')?.value,
+        tc: document.querySelector('input[name="tucan"]:checked')?.value,
+        dn: document.querySelector('input[name="diennuoc"]:checked')?.value,
+        bh: document.querySelector('input[name="baohiem"]:checked')?.value,
+        ns: document.querySelector('input[name="ngansach"]:checked')?.value
+    };
 
-    // Kiểm tra đầu vào
-    if (!pl || !gp || !qh || !tc || !bh) {
-        alert("Anh Long ơi, điền đủ các mục em mới phân tích chuẩn được ạ!");
+    if (Object.values(data).includes(undefined)) {
+        alert("Anh Long vui lòng chọn đủ các mục để em phân tích kịch bản chính xác nhất!");
         return;
     }
 
     const resDiv = document.getElementById('result');
     resDiv.style.display = "block";
     let output = "<h3>📊 KẾT QUẢ PHÂN TÍCH</h3>";
-    let isWarning = false;
+    let score = 0;
 
-    // Logic xử lý
-    if (pl === 'C' || gp === 'C') {
-        output += "• <b>RỦI RO PHÁP LÝ:</b> Nguy cơ bị đình chỉ hoặc cưỡng chế cực cao. Anh nên dừng lại để hoàn thiện giấy tờ.<br><br>";
-        isWarning = true;
+    if (data.pl === 'C' || data.gp === 'C') {
+        output += "❌ <b>NGUY CƠ PHÁP LÝ:</b> Đừng khởi công! Anh cần hoàn thiện giấy tờ để tránh bị cưỡng chế phá dỡ.<br>";
+        score += 3;
     }
 
-    if (tc === 'C' && bh === 'no') {
-        output += "• <b>RỦI RO THI CÔNG:</b> Nhà kẹp sườn rất dễ làm lún nứt hàng xóm. Anh BẮT BUỘC phải mua bảo hiểm và chụp ảnh hiện trạng xung quanh.<br><br>";
-        isWarning = true;
+    // Logic diện tích và mật độ
+    if (data.dt === '50to100') {
+        output += "📏 <b>LƯU Ý DIỆN TÍCH:</b> Với diện tích này, anh cần chừa tối thiểu 1-2m thông tầng hoặc khoảng lùi sau để đảm bảo thông thoáng theo quy định.<br>";
+    } else if (data.dt === 'over100') {
+        output += "📏 <b>QUY ĐỊNH MẬT ĐỘ:</b> Lô đất lớn trên 100m2 thường chỉ được xây khoảng 80-90%. Anh cần kiểm tra chính xác bảng tra mật độ xây dựng để thiết kế đúng phép.<br>";
     }
 
-    if (qh === 'B') {
-        output += "• <b>LƯU Ý QUY HOẠCH:</b> Cần xác định rõ lộ giới để tránh việc sau này phải đập bỏ phần xây lấn ranh.<br><br>";
-        isWarning = true;
+    if (data.tc === 'C' && data.bh === 'no') {
+        output += "⚠️ <b>NGUY CƠ KỸ THUẬT:</b> Địa thế kẹp sườn cực kỳ rủi ro cho hàng xóm. Mua bảo hiểm là cách rẻ nhất để bảo vệ túi tiền của anh.<br>";
+        score += 2;
     }
 
-    if (!isWarning) {
+    if (data.ns === 'no') {
+        output += "💸 <b>TÀI CHÍNH:</b> Xây dựng khách sạn hay nhà phố luôn có chi phí ẩn. Thiếu dự phòng 10% sẽ khiến công trình dễ bị đứt quãng.<br>";
+        score += 1;
+    }
+
+    if (score === 0) {
         resDiv.className = "success";
-        output += "✅ <b>AN TOÀN:</b> Hồ sơ và điều kiện của anh rất tốt. Anh có thể chuẩn bị khởi công ngay!";
+        output += "✅ <b>TUYỆT VỜI:</b> Mọi chỉ số đều an toàn. Anh có một kế hoạch rất bài bản!";
     } else {
         resDiv.className = "warning";
-        output += "⚠️ <b>KHUYÊN DÙNG:</b> Anh nên xử lý các điểm đỏ phía trên trước khi đổ móng.";
+        output += "<br>👉 <b>KHUYÊN DÙNG:</b> Anh nên xử lý các điểm đỏ phía trên trước khi tiến hành ký hợp đồng thầu.";
     }
 
     resDiv.innerHTML = output;
